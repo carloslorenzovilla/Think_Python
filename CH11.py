@@ -5,68 +5,71 @@ Created on Mon Nov  4 10:27:38 2019
 @author: Carlos Villa
 """
 
-from itertools import permutations
+#Fibonacci by dictionary. WOW! It it FAST!!
+known = {0:1, 1:1}
+def fibonacci(n):
+    """ Calculates the fibonacci series using a dictionary
+        to improve performance. Employs recursion.
 
-def build_list(fin):
-    """ Builds a list of words in a text file.
-    
-        Assumption: Text file line format is <word>\r\n
-        
-        fin: text file
-        
-        returns: list    
+        n: int
+
+        returns: int 
     """
-    list_of_words = []
+    if n in known:
+        return known[n]
+    res = fibonacci(n - 1) + fibonacci(n -2)
+    known[n] = res
+    
+    return res
+
+#histogram
+def histogram(s):
+    """ Creates a histogram of a string using dictionary
+    
+        s: string
+    
+        returns: dictionary
+    """
+    d = {}
+    for c in s:
+        while not d.get(c, 0):
+            d[c] = 1
+        d[c] += 1
+    return d
+
+#11-1
+def build_dict(fin):
+    dict_of_words = {}
     for line in fin:
         word = line.strip()
-        list_of_words.append(word)
-    return list_of_words
-
-def in_bisect(words, target):
-    """ Determines if element is present in sorted list using
-        a binary search. Uses recursion.
-        
-        words: list
-        
-        returns: boolean
-    """
-    if len(words) == 0:
-        return False
+        dict_of_words[word] = 1
     
-    middle = len(words)//2
-    
-    if words[middle] == target:
-        return True
-    
-    if target < words[middle]:
-        return in_bisect(words[:middle], target)
-    else:
-        return in_bisect(words[middle+1:], target)
-    
-def generate_words(dictionary, letters, size, in_bisect):
-    """ Generates a list of possible words of a
-        specific size given a string of letters.
-        Permutations are compared with elements in
-        a dictionary.
-        
-        dictionary: list
-        letter: string
-        size: int
-        
-        returns: list
-    """
-    for word in permutations(letters, size):
-        delimeter = ""
-        possible_words = []
-        new_word = delimeter.join(word)
-        if in_bisect(new_word):
-            possible_words.append(new_word)         
-        
-    return possible_words
+    return dict_of_words
 
 fin = open('words.txt')
-dictionary = build_list(fin)
-letters = 'aixemt'
-size = 3 #create exception, if size > len(letters)
 
-print(generate_words(dictionary, letters, size, in_bisect))
+dictionary = build_dict(fin)
+
+#11-2
+def invert_dict(d):
+    """ Inverts a dictionary, mapping values to keys in
+        a list.
+
+        d: dictionary
+
+        returns: dictionary
+    """
+    inverse = {}
+    for key in d:
+        val = d[key]
+        #if val is not in inverse, start an empty value list
+        #otherwise append the key to value list
+        inverse.setdefault(val, []).append(key)
+    return inverse
+
+#11-3
+
+
+hist = histogram('parrot')
+invert = invert_dict(hist)
+
