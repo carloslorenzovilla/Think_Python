@@ -62,8 +62,8 @@ def invert_dict(d):
     inverse = {}
     for key in d:
         val = d[key]
-        #if val is not in inverse, start an empty value list
-        #otherwise append the key to value list
+        #if val is not in inverse, start a singleton value
+        #otherwise append the key to list value
         inverse.setdefault(val, []).append(key)
     return inverse
 
