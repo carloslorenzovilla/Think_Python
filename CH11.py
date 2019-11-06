@@ -2,7 +2,7 @@
 """
 Created on Mon Nov  4 10:27:38 2019
 
-@author: clvil
+@author: Carlos Villa
 """
 
 from itertools import permutations
