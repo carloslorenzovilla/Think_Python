@@ -65,11 +65,33 @@ def invert_dict(d):
         #if val is not in inverse, start a singleton value
         #otherwise append the key to list value
         inverse.setdefault(val, []).append(key)
+    
     return inverse
 
 #11-3
+ack_dict = {}
+def ack(m, n):
+    """ Memoized Ackermann function
+    
+        m: positive int
+        n: positive int
+        
+        returns: dictionary value
+        
+    """   
+    if m == 0:
+        return n + 1
+    
+    if n == 0:
+        return ack(m - 1, 1)
 
+    if (m, n) in ack_dict:
+        return ack_dict[m, n]
+        
+    else:
+        ack_dict[m, n] = ack(m - 1, ack(m, n - 1))
+        return ack_dict[m, n]
 
 hist = histogram('parrot')
 invert = invert_dict(hist)
-
+ack(3,4)
