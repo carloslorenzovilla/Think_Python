@@ -113,17 +113,76 @@ def rotate_pairs(d):
             pairs.append(key)
     return pairs
     
+
+"""This module contains a code example related to
+
+Think Python, 2nd Edition
+by Allen Downey
+http://thinkpython2.com
+
+Copyright 2015 Allen Downey
+
+License: http://creativecommons.org/licenses/by/4.0/
+"""
+
+def read_dictionary(filename='c06d.txt'):
+    """Reads from a file and builds a dictionary that maps from
+    each word to a string that describes its primary pronunciation.
+
+    Secondary pronunciations are added to the dictionary with
+    a number, in parentheses, at the end of the key, so the
+    key for the second pronunciation of "abdominal" is "abdominal(2)".
+
+    filename: string
+    returns: map from string to pronunciation
+    """
+    d = dict()
+    fin = open(filename)
+    for line in fin:
+
+        # skip over the comments
+        if line[0] == '#': continue
+
+        t = line.split()
+        word = t[0].lower()
+        pron = ' '.join(t[1:])
+        d[word] = pron
+
+    return d
+
+#11-6
+def homophones(w, p):
+    """ Checks whether two words are homophones
+    
+        w: dictionary of words
+        p: dictionary of word procunciation (key: word, value: pronunciation)
+        
+        returns: list or homophones
+    """
+    for key in w:
+        key_min_1 = key[1:]
+        key_min_2 = key[0] + key[2:]
+        if key in p and key_min_1 in p and key_min_2 in p:
+            if p[key] == p[key_min_1] == p[key_min_2]:
+                print(key)
+                
 if __name__ == '__main__':
 
     fin = open('words.txt')
+
+#    hist = histogram('parot')
+#    invert = invert_dict(hist)
+#    ack(3,4)
+#    
+#    pairs = rotate_pairs(words)
+#    
+#    print(has_duplicates(hist))
     
     words = build_dict(fin)
     
+    pronounce = read_dictionary()
     
-    hist = histogram('parot')
-    invert = invert_dict(hist)
-    ack(3,4)
+    homophones(words, pronounce)
     
-    pairs = rotate_pairs(words)
     
-    print(has_duplicates(hist))
+    
