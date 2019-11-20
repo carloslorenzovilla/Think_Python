@@ -32,9 +32,7 @@ def histogram(s):
     """
     d = {}
     for c in s:
-        while not d.get(c, 0):
-            d[c] = 1
-        d[c] += 1
+        d[c] = 1 + d.get(c, 0)
     return d
 
 #11-1
@@ -92,6 +90,21 @@ def ack(m, n):
         ack_dict[m, n] = ack(m - 1, ack(m, n - 1))
         return ack_dict[m, n]
 
-hist = histogram('parrot')
+#11-4
+def has_duplicates(d):
+    """ Determines if dictionary has duplicates
+    
+        d: dictionary
+        
+        returns: boolean
+    """
+    for key in d:
+        if d[key] > 1:
+            return True
+    return False
+
+hist = histogram('pparrot')
 invert = invert_dict(hist)
 ack(3,4)
+
+print(has_duplicates(hist))
