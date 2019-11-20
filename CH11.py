@@ -109,7 +109,8 @@ def rotate_pairs(d):
     """
     pairs = []
     for key in d:
-        if key[::-1] in d and key[::-1] != key:
+        rotate = key[::-1]
+        if rotate in d and rotate != key:
             pairs.append(key)
     return pairs
     
