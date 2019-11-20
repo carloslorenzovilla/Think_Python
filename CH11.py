@@ -44,10 +44,6 @@ def build_dict(fin):
     
     return dict_of_words
 
-fin = open('words.txt')
-
-dictionary = build_dict(fin)
-
 #11-2
 def invert_dict(d):
     """ Inverts a dictionary, mapping values to keys in
@@ -103,8 +99,31 @@ def has_duplicates(d):
             return True
     return False
 
-hist = histogram('pparrot')
-invert = invert_dict(hist)
-ack(3,4)
+#11-5
+def rotate_pairs(d):
+    """ Finds all word rotate pairs in wordlist
+    
+        d: dictionary
+        
+        returns: list
+    """
+    pairs = []
+    for key in d:
+        if key[::-1] in d and key[::-1] != key:
+            pairs.append(key)
+    return pairs
+    
+if __name__ == '__main__':
 
-print(has_duplicates(hist))
+    fin = open('words.txt')
+    
+    words = build_dict(fin)
+    
+    
+    hist = histogram('parot')
+    invert = invert_dict(hist)
+    ack(3,4)
+    
+    pairs = rotate_pairs(words)
+    
+    print(has_duplicates(hist))
