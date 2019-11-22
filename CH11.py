@@ -158,14 +158,13 @@ def homophones(w, p):
         w: dictionary of words
         p: dictionary of word procunciation (key: word, value: pronunciation)
         
-        returns: list or homophones
     """
     for key in w:
         key_min_1 = key[1:]
         key_min_2 = key[0] + key[2:]
         if key in p and key_min_1 in p and key_min_2 in p:
             if p[key] == p[key_min_1] == p[key_min_2]:
-                print(key)
+                print(f'{key}, {key_min_1}, {key_min_2}.')
                 
 if __name__ == '__main__':
 
