@@ -32,7 +32,7 @@ def histogram(s):
     """
     d = {}
     for c in s:
-        d[c] = 1 + d.get(c, 0)
+        d[c] = d.get(c, 0) + 1
     return d
 
 #11-1
