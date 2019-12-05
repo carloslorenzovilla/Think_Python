@@ -39,6 +39,7 @@ def most_frequent(string_):
 
 if __name__ == "__main__":
     
-    most_frequent('zaanbnb asdkjfhaksdf aqwieur!')
+    f = open('words.txt').read()
+    most_frequent(f)
 
     
