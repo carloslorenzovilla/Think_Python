@@ -37,6 +37,13 @@ def histogram(s):
 
 #11-1
 def build_dict(fin):
+    """ Reads words in a docoment and stores
+        them in a dictionary.
+        
+        fin: txt file
+    
+        returns: dictionary
+    """
     dict_of_words = {}
     for line in fin:
         word = line.strip()
