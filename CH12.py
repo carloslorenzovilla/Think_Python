@@ -105,6 +105,17 @@ def bingo(d):
     
     return bingo_anagrams
 
+#12-3
+def metathesis_pair(list_):
+
+    for i, item in enumerate(list_):
+        print(item)
+        for j, char in enumerate(item):
+            print(char)
+            print(list_[i][j])
+                        
+                
+
 if __name__ == "__main__":
     
     f = open('words.txt')
@@ -113,6 +124,8 @@ if __name__ == "__main__":
     anagrams = anagrams(new_dict)
     sorted_anagrams = sorted_anagrams(new_dict)
     bingo = bingo(new_dict)
+
+    new_list = metathesis_pair(anagrams)
     
     
     

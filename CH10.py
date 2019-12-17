@@ -112,7 +112,7 @@ def probability_of_birthday(n, list_of_birthdays, has_duplicates):
         returns: float    
     """
     count = 0
-    for i in range(n):
+    for _ in range(n):
         birthdays = list_of_birthdays()
         
         if has_duplicates(birthdays):
